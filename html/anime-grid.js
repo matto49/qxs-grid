@@ -18,7 +18,7 @@ const loadImage = (src,onOver)=>{
     if(Images[src]) return onOver(Images[src]);
     const el = new Image();
     el.crossOrigin = 'Anonymous';
-    el.src = src;
+    el.src = src + "?" + new Date();
     el.onload = ()=>{
         onOver(el)
         Images[src] = el;
