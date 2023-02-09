@@ -34,12 +34,12 @@ const typeTexts = `入坑作
 最胃疼
 最对xp
 最有乐子
-最受苦的
+最动人的
+印象最深的
 最光滑
 最砂纸
 最被高估的
 最被低估的
-群友最爱
 最lkd`;
 
 const types = typeTexts.trim().split(/\n+/g);
