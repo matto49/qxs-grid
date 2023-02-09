@@ -17,8 +17,7 @@ let curImageUrls = [{}]
 const loadImage = (src,onOver)=>{
     if(Images[src]) return onOver(Images[src]);
     const el = new Image();
-    el.crossOrigin = 'Anonymous';      
-    el.setAttribute('crossOrigin', 'anonymous')
+    el.crossOrigin = 'Anonymous';
     el.src = src + "?" + new Date().getTime();
     el.onload = ()=>{
         onOver(el)
@@ -243,7 +242,7 @@ formEl.onsubmit = async e=>{
         animeImages[anime.id] = anime.images.large
     })
     animeListEl.innerHTML = animes.map(anime=>{
-        return `<div class="anime-item" data-src="${anime.images.large}" data-id="${anime.id}"><img src="${anime.images.large}" crossOrigin="true"><h3>${anime.name_cn}</h3></div>`;
+        return `<div class="anime-item" data-src="${anime.images.large}" data-id="${anime.id}"><img src="${anime.images.large}" ><h3>${anime.name_cn}</h3></div>`;
     }).join('');
 }
 
