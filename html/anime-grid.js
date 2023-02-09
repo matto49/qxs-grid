@@ -17,7 +17,7 @@ let curImageUrls = [{}]
 const loadImage = (src,onOver)=>{
     if(Images[src]) return onOver(Images[src]);
     const el = new Image();
-    el.crossOrigin = 'Anonymous';
+    // el.crossOrigin = 'anonymous';
     el.src = src + "?" + new Date().getTime();
     el.onload = ()=>{
         onOver(el)
@@ -29,21 +29,18 @@ const loadImage = (src,onOver)=>{
 const typeTexts = `入坑作
 最喜欢
 看最多次
-最想安利
-
 最佳插画
-看得最爽
+最想安利
+最胃疼
 最对xp
-
-最治愈
+最有乐子
+最受苦的
 最电波
 最光滑
 最砂纸
-和n手比呢
-
-最过誉
-最离谱
-最讨厌`;
+最n手女友
+群友最爱
+最lkd`;
 
 const types = typeTexts.trim().split(/\n+/g);
 
