@@ -17,12 +17,11 @@ let curImageUrls = [{}]
 const loadImage = (src,onOver)=>{
     if(Images[src]) return onOver(Images[src]);
     const el = new Image();
-    // el.crossOrigin = 'Anonymous';
+    el.crossOrigin = 'Anonymous';
     el.src = src;
     el.onload = ()=>{
         onOver(el)
         Images[src] = el;
-        console.log(src,"src")
     }
 };
 
@@ -316,7 +315,7 @@ const drawBangumis = ()=>{
 
 
 const downloadImage = ()=>{
-    const fileName = '[神奇海螺][动画生涯个人喜好表].jpg';
+    const fileName = '厕纸生涯个人喜好表.jpg';
     const mime = 'image/jpeg';
     const imgURL = canvas.toDataURL(mime,0.8);
     const linkEl = document.createElement('a');
