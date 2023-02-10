@@ -231,8 +231,8 @@ animeListEl.onclick = e=>{
 formEl.onsubmit = async e=>{
     if(e) e.preventDefault();
     const keyword = searchInputEl.value.trim();
-    // let url =`https://api.bgm.tv/search/subject/${encodeURIComponent(keyword)}?type=1&max_results=9`;
-    let url =`/api/search/subject/${encodeURIComponent(keyword)}?type=1&max_results=9`;
+    let url =`https://api.bgm.tv/search/subject/${encodeURIComponent(keyword)}?type=1&max_results=9`;
+    // let url =`/api/search/subject/${encodeURIComponent(keyword)}?type=1&max_results=9`;
     const animes = (await get(url)).list; 
     if(!animes) return
     animes.forEach((anime)=>{
