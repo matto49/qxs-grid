@@ -240,11 +240,14 @@ function debounce(func,delay) {
 async function search(e) {
     if (e) e.preventDefault();
     const keyword = searchInputEl.value.trim();
-    let url = `https://api.bgm.tv/search/subject/${encodeURIComponent(keyword)}?type=4&max_results=9`;
+    // let url = `https://api.bgm.tv/search/subject/${encodeURIComponent(keyword)}?type=4&max_results=9`;
+    // 换反向代理
+    let url = `/api/search/subject/${encodeURIComponent(keyword)}?type=4&max_results=9`;
     const animes = (await get(url)).list;
     if (!animes) return
     animes.forEach((anime) => {
-        animeImages[anime.id] = anime.images.large
+        // 同样也是
+        animeImages[anime.id] = "/lain/" + anime.images.large.split("bgm.tv/")[1]
     })
     animeListEl.innerHTML = animes.map(anime => {
         return `<div class="anime-item" data-src="${anime.images.large}" data-id="${anime.id}"><img src="${anime.images.large}" ><h3>${anime.name_cn}</h3></div>`;
