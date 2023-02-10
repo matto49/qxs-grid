@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grid
+  namespace: grid
+spec:
+  selector:
+    matchLabels:
+      app: grid
+  template:
+    metadata:
+      labels:
+        app: grid
+    spec:
+      containers:
+        - image: registry.cn-beijing.aliyuncs.com/pivot_studio/grid:latest
+          name: grid
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: 50m
+              memory: 50Mi
+            requests:
+              cpu: 50m
+              memory: 50Mi
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: grid
+  name: grid
+  labels:
+    app: grid
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+      name: http
+  selector:
+    app: grid
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: grid
+  name: gateway
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    # 开启use-regex，启用path的正则匹配
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    kubernetes.io/tls-acme: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    # ratelimit
+    nginx.ingress.kubernetes.io/limit-connections: "60"
+    nginx.ingress.kubernetes.io/limit-rps: "60"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto https;
+spec:
+  rules:
+    - host: grid.pivotstudio.cn
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: grid
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - grid.pivotstudio.cn
+      secretName: pivot-tls-cert
