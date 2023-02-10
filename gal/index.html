@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>galgame生涯个人喜好表生成器</title>
+    <link rel="stylesheet" href="document.css" />
+  </head>
+  <body>
+    <canvas></canvas>
+    <div class="ctrl-box">
+      <a class="generator-btn ui-btn" onclick="downloadImage()">生成galgame生涯个人喜好表</a>
+    </div>
+    <div class="search-bangumis-box" data-show="false">
+      <div class="content-box">
+        <form>
+          <input type="text" placeholder="输入关键词、回车查找galgame" />
+        </form>
+        <div class="anime-list"></div>
+        <div class="foot">
+          <a class="close ui-btn" onclick="setInputText()">没找到，就用搜索框里的文字了</a>
+          <a class="close ui-btn current" onclick="closeSearchBox()">取消设定</a>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <a href="https://github.com/matto49/gal-grid" target="_blank">GitHub</a>
+      <span>galgame信息来自 <a href="https://bgm.tv/" target="_blank">番组计划</a></span>
+    </footer>
+    <script src="anime-grid.js"></script>
+  </body>
+</html>
