@@ -17,7 +17,7 @@ let curImageUrls = [{}]
 const loadImage = (src,onOver)=>{
     if(Images[src]) return onOver(Images[src]);
     const el = new Image();
-    // el.crossOrigin = 'anonymous';
+    el.crossOrigin = 'anonymous';
     el.src = src + "?" + new Date().getTime();
     el.onload = ()=>{
         onOver(el)
