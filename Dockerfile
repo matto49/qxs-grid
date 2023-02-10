@@ -1,5 +1,6 @@
 FROM nginx:alpine
 
 COPY ./nginx.conf /etc/nginx/nginx.conf
-COPY html /var/www/grid/
+COPY gal /var/www/grid/gal/
+COPY qxs /var/www/grid/qxs/
 WORKDIR /var/www/grid/
