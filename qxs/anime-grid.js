@@ -261,7 +261,7 @@ const drawBangumis = ()=>{
         const x = index % col;
         const y = Math.floor(index / col);
 
-        if(!/^\d+$/.test(id)){ // 非数字
+        if(id.length){
             ctx.save()
             ctx.fillStyle = '#fff';                    
             ctx.fillRect(
