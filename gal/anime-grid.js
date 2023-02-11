@@ -96,11 +96,12 @@ const scale = 3;
 canvas.width = width * scale;
 canvas.height = height * scale;
 
-ctx.fillStyle = '#FFF';
+ctx.fillStyle = "#fff";
 ctx.fillRect(
     0, 0,
     width * scale, height * scale
 );
+console.log(width * scale,height * scale)
 
 ctx.textAlign = 'left';
 ctx.font = `${9 * scale}px sans-serif`;
@@ -268,8 +269,8 @@ formEl.onsubmit();
         const imageHeight = rowHeight - fontHeight;
         const canvasRatio = imageWidth / imageHeight;
 
+        
         ctx.font = 'bold 32px sans-serif';
-
         const drawBangumis = () => {
             for (let index in bangumis) {
                 const id = bangumis[index];
@@ -278,13 +279,15 @@ formEl.onsubmit();
                 const y = Math.floor(index / col);
 
                 if (!/^\d+$/.test(id)) { // 非数字
-
-                    ctx.clearRect(
+                    ctx.save()
+                    ctx.fillStyle = '#fff';                    
+                    ctx.fillRect(
                         x * colWidth + 1,
-                        y * rowHeight + 1,
+                        y * rowHeight + 1, 
                         imageWidth,
                         imageHeight,
-                    )
+                    );
+                    ctx.restore();
                     ctx.fillText(
                         id,
                         (x + 0.5) * colWidth,
@@ -341,7 +344,7 @@ formEl.onsubmit();
             document.body.appendChild(linkEl);
             linkEl.click();
             document.body.removeChild(linkEl);
-            // new Image().src = `${APIURL}grid?ids=${getBangumiIdsText()}`;
+            // new Image().src = `/grid?ids=${getBangumiIdsText()}`;
         }
 
         canvas.onclick = e => {

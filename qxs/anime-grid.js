@@ -262,13 +262,15 @@ const drawBangumis = ()=>{
         const y = Math.floor(index / col);
 
         if(!/^\d+$/.test(id)){ // 非数字
-
-            ctx.clearRect(
+            ctx.save()
+            ctx.fillStyle = '#fff';                    
+            ctx.fillRect(
                 x * colWidth + 1,
                 y * rowHeight + 1, 
                 imageWidth,
                 imageHeight,
-            )
+            );
+            ctx.restore();
             ctx.fillText(
                 id,
                 (x + 0.5) * colWidth,
